@@ -1,5 +1,8 @@
-This project was built using hardhat to
+This project was built using hardhat
 
-1. Deposit collateral: ETH/WETH
-2. Borrow another asset: DAI
-3. Repay the DAI
+What this project does
+
+1. Fork mainnet/Use sepolia
+2. Deposit collateral: ETH/WETH
+3. Borrow another asset: DAI
+4. Repay the DAI

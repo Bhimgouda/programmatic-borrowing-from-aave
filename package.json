@@ -1,5 +1,5 @@
 {
-  "name": "programmatic-lending-from-aave",
+  "name": "borrowing-lending-from-aave",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -26,5 +26,8 @@
   },
   "mocha": {
     "timeout": 10000000
+  },
+  "dependencies": {
+    "@aave/protocol-v2": "^1.0.1"
   }
 }
