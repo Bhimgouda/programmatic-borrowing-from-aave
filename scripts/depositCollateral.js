@@ -1,18 +1,11 @@
 const { ethers } = require("hardhat");
 const { networkConfig } = require("../helper-hardhat.config")
-const { getWeth, AMOUNT } = require("./getWeth")
+const { AMOUNT } = require("./getWeth")
 
-
-
-
-exports.main = async ()=>{
+const depositCollateral = async ()=>{
     const {deployer} = await getNamedAccounts()
     const chainId = network.config.chainId;
     const wethTokenAddress = networkConfig[chainId]["wethContract"]
-
-    // Aave protocol treats everything as erc20 token
-    // 1. That's why we got WETH erc20 Token from ETH
-    await getWeth()
 
     // 2. Depositing WETH to aave contract as collateral
     const lendingPool = await getLendingPool(deployer, chainId)
@@ -24,6 +17,7 @@ exports.main = async ()=>{
     const tx = await lendingPool.deposit(wethTokenAddress, AMOUNT, deployer, 0)
     console.log("Deposited........................")
 
+    return lendingPool
 }
 
 async function getLendingPool(signerAccount, chainId){
@@ -44,4 +38,6 @@ async function approveErc20(contractAddress, spenderAddress, amountToSpend, sign
     await tx.wait(1)
     console.log("Approved")
 }
+
+module.exports = {depositCollateral}
 
